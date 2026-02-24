@@ -260,24 +260,19 @@ Para cada categoría, probamos valores que están justo en el límite para asegu
 
 * **Cálculo correcto en hombres:** Se comprueba que, al introducir una altura normal para un hombre, el resultado sea el esperado matemáticamente, de acuerdo con la fórmula de Lorentz: 
 
-$$
-PCI = (Estatura - 100) - \frac{(Estatura - 150)}{4}
-$$
+  $$PCI = (Estatura - 100) - \frac{(Estatura - 150)}{4}$$
 
 * **Cálculo correcto en mujeres:** Se comprueba que, al introducir una altura normal para una mujer, el resultado sea el esperado matemáticamente, de acuerdo con la fórmula de Lorentz:
 
-$$
-PCI = (Estatura - 100) - \frac{(Estatura - 150)}{2}
-$$
+  $$PCI = (Estatura - 100) - \frac{(Estatura - 150)}{2}$$
 
 * **Comparación por sexo:** Se comprueba que para una misma altura, el resultado PCI sea diferente entre hombre y mujer, tal y como se establece en la fórmula.
 
 * **Protección ante datos imposibles:**
-    * El sistema debe rechazar estaturas menores a 30 cm.
-    * El sistema debe rechazar estaturas mayores a 300 cm.
+  * El sistema debe rechazar estaturas menores a 30 cm.
+  * El sistema debe rechazar estaturas mayores a 300 cm.
 
 * **Protección ante errores de escritura:** Se verifica que no se permitan valores negativos o iguales a cero.
-
 
 </details>
 
