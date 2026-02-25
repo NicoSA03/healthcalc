@@ -33,4 +33,14 @@ public interface HealthCalc {
 	 * @throws Exception
 	 */
 	public double bmi(double weight, double height) throws InvalidHealthDataException;
+
+	/**
+	 * Calculate the Ideal Body Weight (IBM) of a person with the Lorenz formula:
+	 * 
+	 * @param height 	Height of the person (cm).
+	 * @param gender    Gender of the person ('m' for male or 'f' for female).
+	 * @return	  		The Ideal Body Weight of the person (kg).
+	 * @throws Exception
+	 */
+	public double ibw(double height, char gender) throws InvalidHealthDataException;
 }
