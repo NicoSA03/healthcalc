@@ -54,5 +54,4 @@ public interface HealthCalc {
 	 * @return	  		The Ideal Body Weight of the person (kg).
 	 * @throws Exception
 	 */
-	public double ibw(double height) throws InvalidHealthDataException;
 }

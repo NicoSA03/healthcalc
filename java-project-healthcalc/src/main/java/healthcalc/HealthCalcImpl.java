@@ -59,14 +59,25 @@ public class HealthCalcImpl implements HealthCalc {
 
     @Override
     public double ibw(double height, char gender) throws InvalidHealthDataException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'ibw'");
+        // Initial exception
+        if (height < 30 || height > 300) {
+            throw new InvalidHealthDataException("Height must be within a possible biological range [30-300] cm.");
+        }
+        
+        // Management of the gender parameter
+        double v_aux = -1;
+        if (Character.toUpperCase(gender)== 'M'){
+            v_aux = 4;
+        } else if (Character.toUpperCase(gender) == 'F'){
+            v_aux = 2;
+        } else {
+            throw new InvalidHealthDataException("Gender must be 'm' or 'f'."); // Exception for non-considered gender parameters
+        }
+
+        // Calculations of the result
+        double ibw = (height - 100) - ((height-150)/v_aux);
+        return ibw;
     }
 
-    @Override
-    public double ibw(double height) throws InvalidHealthDataException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'ibw'");
-    }
     
 }
