@@ -1,8 +1,12 @@
 package healthcalc;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
 import healthcalc.exceptions.InvalidHealthDataException;
 
 /**
@@ -27,10 +31,10 @@ public class IBWTest {
     class IBWMetricTests {
 
         @Test
-        @DisplayName("Cálculo de IBW con valores estándar válidos para hombres")
-        void testIbwValido() throws InvalidHealthDataException {
-            double height = 175;
-            double expectedIbw = (175 - 100) - ((175 - 150) / 4.0);
+        @ParameterizedTest(name = "Cálculo IBW para valores estándar para hombre altura: {0} cm")
+        @ValueSource(doubles = {165, 170, 180, 190, 201})
+        void testIbwHombreValido(double height) throws InvalidHealthDataException {
+            double expectedIbw = (height - 100) - ((height - 150) / 4.0);
 
             double result = healthCalc.ibw(height);
 
@@ -38,15 +42,26 @@ public class IBWTest {
         }
 
         @Test
-        @DisplayName("Cálculo de IBW con valores estándar válidos para mujeres")
-        void testIbwMujerValido() throws InvalidHealthDataException {
-            double height = 165;
-            double expectedIbw = (165 - 100) - ((165 - 150) / 2.5);
+        @ParameterizedTest(name = "Cálculo IBW para valores estándar para mujeres altura: {0} cm")
+        @ValueSource(doubles = {145, 155, 168, 180, 200})
+        void testIbwMujerValido(double height) throws InvalidHealthDataException {
+            double expectedIbw = (height - 100) - ((height - 150) / 2.5);
 
             double result = healthCalc.ibw(height);
 
             assertEquals(expectedIbw, result, 0.01);
-           
         }
+
+        @Test
+        @DisplayName("Lanzar error cuando altura negativa")
+        void testIbwAlturaNegativa() {
+            assertThrows(InvalidHealthDataException.class, () -> healthCalc.ibw(-100.0));
+        }
+
+        @Test
+        @DisplayName("Lanzar error cuando altura cero")
+        void testIbwAlturaCero() {
+            assertThrows(InvalidHealthDataException.class, () -> healthCalc.ibw(0.0));
+        }   
     }
 }
