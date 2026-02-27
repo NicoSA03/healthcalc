@@ -46,5 +46,10 @@ public class HealthCalcImpl implements HealthCalc {
         }
         return weight / Math.pow(height, 2);
     }
-    
+
+    @Override
+    public double ibw(double height) throws InvalidHealthDataException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'ibw'");
+    }
 }
